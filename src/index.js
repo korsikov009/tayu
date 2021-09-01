@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Board from './board';
-import createTayuStore from './store';
+import Board from './components/board';
+import createTayuStore from './redux/store';
 import { Provider, connect } from 'react-redux';
-import { newGame, getPiece, loadGame, connected, loadingFromServer } from './actions';
-import './index.css';
+import { newGame, getPiece, loadGame, connected, loadingFromServer } from './redux/actions';
+import './styles/index.css';
 import 'sanitize.css';
 
 import { https, serverPort, serverAddr } from './config';

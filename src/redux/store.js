@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import shapes from './shapes';
+import shapes from '../shapes.json';
 import {
   NEW_GAME,
   GET_PIECE,
@@ -16,7 +16,7 @@ import {
   doublesRight,
   doublesTop,
   doublesBottom,
-} from './doubles';
+} from '../doubles.json';
 
 const newPiece = (key, shape) => ({
   key,

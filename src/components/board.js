@@ -6,7 +6,7 @@ import {
   putPiece,
   moveMouse,
   getPiece,
-} from './actions';
+} from '../redux/actions';
 import Piece from './piece';
 import './board.css';
 import {
@@ -14,7 +14,7 @@ import {
   doublesRight,
   doublesTop,
   doublesBottom,
-} from './doubles';
+} from '../doubles.json';
 
 let inhibitWheel = false;
 
