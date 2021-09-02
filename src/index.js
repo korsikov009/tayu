@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import Board from './components/board';
 import createTayuStore from './redux/store';
 import { Provider, connect } from 'react-redux';
-import { newGame, getPiece, loadGame, connected, loadingFromServer } from './redux/actions';
+import { newGame, getPiece, loadGame } from './redux/actions';
+import { connected, loadingFromServer } from './redux/reducers/server/actions';
 import './styles/index.css';
 import 'sanitize.css';
 
@@ -56,7 +57,7 @@ class Scores extends Component {
 }
 
 const ServerHook = connect(state => ({ state }))(({ state, dispatch, children }) => {
-  const { ws, loading } = state.serverLink;
+  const { ws, loading } = state.server;
   const loadingOutput = (
     <div style={{
       color: '#B2497D',
