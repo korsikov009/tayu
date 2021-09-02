@@ -24,11 +24,6 @@ const serverHook = store => next => (action) => {
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const middlewares = applyMiddleware(logger, serverHook);
-const enhancer = reduxDevTools ? compose(middlewares, reduxDevTools) : middlewares
+const enhancer = reduxDevTools ? compose(middlewares, reduxDevTools) : middlewares;
 
-export default (preloadedState = undefined) =>
-  createStore(
-    rootReducer,
-    preloadedState,
-    enhancer
-  );
+export const store = createStore(rootReducer, enhancer);
