@@ -6,40 +6,19 @@ import {
   putPiece,
   moveMouse,
   getPiece,
-} from '../redux/actions';
-import Piece from './piece';
+} from '../../redux/actions';
+import Piece from '../piece/piece';
 import './board.css';
 import {
   doublesLeft,
   doublesRight,
   doublesTop,
   doublesBottom,
-} from '../doubles.json';
+} from '../../doubles.json';
 
 let inhibitWheel = false;
 
-export default connect(
-  ({ pieces }) => ({
-    pieces: pieces.current
-      ? [
-        ...pieces.used,
-        {
-          ...pieces.current,
-          selected: true,
-        },
-      ]
-      : pieces.used,
-    position: pieces.position,
-    gameOver: pieces.gameOver,
-  }),
-  {
-    getPiece,
-    moveMouse,
-    putPiece,
-    leftTurnPiece,
-    rightTurnPiece,
-  },
-)(({
+const Board = ({
   pieces,
   position,
   gameOver,
@@ -118,4 +97,28 @@ export default connect(
       {gameOver ? <div className="gameOver"/> : ''}
     </div>
   );
-});
+};
+
+const mapStateToProps = ({ pieces }) => ({
+  pieces: pieces.current
+    ? [
+      ...pieces.used,
+      {
+        ...pieces.current,
+        selected: true,
+      },
+    ]
+    : pieces.used,
+  position: pieces.position,
+  gameOver: pieces.gameOver,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getPiece: () => dispatch(getPiece()),
+  moveMouse: (position) => dispatch(moveMouse(position)),
+  putPiece: () => dispatch(putPiece()),
+  leftTurnPiece: () => dispatch(leftTurnPiece()),
+  rightTurnPiece: () => dispatch(rightTurnPiece()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

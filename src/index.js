@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Board from './components/board';
+import Board from './components/board/board';
 import createTayuStore from './redux/store';
 import { Provider, connect } from 'react-redux';
 import { newGame, getPiece, loadGame } from './redux/actions';
@@ -163,10 +163,12 @@ const Controls = connect(state => ({ state }))(({ state, dispatch }) => {
 
 ReactDOM.render(
   <Provider store={createTayuStore()}>
-    <ServerHook>
+    {/*<ServerHook>*/}
+    <React.Fragment>
       <Controls />
       <Board />
-    </ServerHook>
+    </React.Fragment>
+    {/*</ServerHook>*/}
   </Provider>,
   document.getElementById('root'),
 );
